@@ -10,7 +10,7 @@
 
     <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>com.rimerosolutions.maven.plugins</groupId>
                 <artifactId>wrapper-maven-plugin</artifactId>
                 <version>0.0.4</version>
@@ -18,7 +18,7 @@
                     <verifyDownload>true</verifyDownload>
                     <checksumAlgorithm>MD5</checksumAlgorithm>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -66,16 +66,35 @@
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
+        <!--STEP2 引入数据库认证相关 start-->
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-jdbc</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-jdbc-drivers</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.driver.version}</version>
+        </dependency>
+        <!--数据库认证相关 end-->
     </dependencies>
 
     <properties>
-        <cas.version>5.1.9</cas.version>
+        <cas.version>5.1.1</cas.version><!--STEP3 修改版本，高版本目前暂时没有相应的JDBC支持-->
         <springboot.version>1.5.3.RELEASE</springboot.version>
         <!-- app.server could be -jetty, -undertow, -tomcat, or blank if you plan to provide appserver -->
         <app.server>-tomcat</app.server> 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--DateBase-->
+        <mysql.driver.version>8.0.13</mysql.driver.version>
     </properties>
 
     <repositories>
@@ -109,7 +128,7 @@
         </repository>
     </repositories>
 
-    <profiles>
+    <!--<profiles>
         <profile>
             <activation>
                 <activeByDefault>false</activeByDefault>
@@ -139,5 +158,5 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 </project>
